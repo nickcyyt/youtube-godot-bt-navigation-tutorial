@@ -1,0 +1,224 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Asset/zoimbie1_hold.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.0
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="BTREE" type="Node" parent="."]
+script = ExtResource( 3 )
+tree = {
+"connection": [ {
+"from": "root",
+"from_port": 0,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 2,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( 280, 0 ),
+"params": [  ],
+"size": Vector2( 292, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 280, 100 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 280, 200 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 40, 20 ),
+"size": Vector2( 138, 136 )
+},
+"name": "sequence",
+"type": 2
+} ],
+"data": {
+"offset": Vector2( -140, 40 ),
+"size": Vector2( 83, 60 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( 280, 0 ),
+"params": [  ],
+"size": Vector2( 292, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 280, 100 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 280, 200 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 40, 20 ),
+"size": Vector2( 138, 136 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 280, 200 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 280, 100 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( 280, 0 ),
+"params": [  ],
+"size": Vector2( 292, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( 280, 0 ),
+"params": [  ],
+"size": Vector2( 292, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 280, 100 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 280, 200 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 40, 20 ),
+"size": Vector2( 138, 136 )
+},
+"name": "sequence",
+"type": 2
+} ],
+"data": {
+"offset": Vector2( -140, 40 ),
+"size": Vector2( 83, 60 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "2909841851215533367"
