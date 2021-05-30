@@ -1,0 +1,1256 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Asset/zoimbie1_hold.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.0
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+MAX_SPEED = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="BTREE" type="Node" parent="."]
+script = ExtResource( 3 )
+tree = {
+"connection": [ {
+"from": "sequence2",
+"from_port": 0,
+"to": "wait_node",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "priority_selector",
+"to_port": 0
+}, {
+"from": "priority_selector",
+"from_port": 0,
+"to": "priority_condition",
+"to_port": 0
+}, {
+"from": "priority_selector",
+"from_port": 1,
+"to": "priority_condition2",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task6",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 2,
+"to": "task7",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 3,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "priority_condition2",
+"from_port": 0,
+"to": "selector",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 1,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 0,
+"to": "sequence3",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task5",
+"to_port": 0
+}, {
+"from": "priority_condition",
+"from_port": 0,
+"to": "paralel",
+"to_port": 0
+}, {
+"from": "sequence4",
+"from_port": 0,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "sequence4",
+"from_port": 1,
+"to": "task",
+"to_port": 0
+}, {
+"from": "paralel",
+"from_port": 1,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "paralel",
+"from_port": 0,
+"to": "repeat",
+"to_port": 0
+}, {
+"from": "repeat",
+"from_port": 0,
+"to": "sequence4",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+} ],
+"data": {
+"count": 0.0,
+"offset": Vector2( 180, -40 ),
+"size": Vector2( 196, 55 )
+},
+"name": "repeat",
+"type": 8
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 120 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 40, -40 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 60 ),
+"params": [ [ 0, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 0 ]
+},
+"name": "priority_condition",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 180, 260 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 180, 440 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 20, 260 ),
+"size": Vector2( 126, 109 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 180 ),
+"params": [ [ 1, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 1 ]
+},
+"name": "priority_condition2",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -520, 120 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+} ],
+"data": {
+"offset": Vector2( -640, 140 ),
+"size": Vector2( 83, 60 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+} ],
+"data": {
+"count": 0.0,
+"offset": Vector2( 180, -40 ),
+"size": Vector2( 196, 55 )
+},
+"name": "repeat",
+"type": 8
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 120 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 40, -40 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 60 ),
+"params": [ [ 0, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 0 ]
+},
+"name": "priority_condition",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 180, 260 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 180, 440 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 20, 260 ),
+"size": Vector2( 126, 109 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 180 ),
+"params": [ [ 1, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 1 ]
+},
+"name": "priority_condition2",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -520, 120 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 180, 260 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 180, 440 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 20, 260 ),
+"size": Vector2( 126, 109 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 180 ),
+"params": [ [ 1, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 1 ]
+},
+"name": "priority_condition2",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+} ],
+"data": {
+"count": 0.0,
+"offset": Vector2( 180, -40 ),
+"size": Vector2( 196, 55 )
+},
+"name": "repeat",
+"type": 8
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 120 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 40, -40 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 60 ),
+"params": [ [ 0, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 0 ]
+},
+"name": "priority_condition",
+"type": 5
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 180, 260 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 180, 440 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 20, 260 ),
+"size": Vector2( 126, 109 )
+},
+"name": "selector",
+"type": 3
+}, {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 180, 440 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 180, 260 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+} ],
+"data": {
+"count": 0.0,
+"offset": Vector2( 180, -40 ),
+"size": Vector2( 196, 55 )
+},
+"name": "repeat",
+"type": 8
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 120 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 40, -40 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 120 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+} ],
+"data": {
+"count": 0.0,
+"offset": Vector2( 180, -40 ),
+"size": Vector2( 196, 55 )
+},
+"name": "repeat",
+"type": 8
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_set_player_target",
+"offset": Vector2( 580, -100 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 600, 0 ),
+"params": [  ],
+"size": Vector2( 307, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 400, -80 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+} ],
+"data": {
+"count": 0.0,
+"offset": Vector2( 180, -40 ),
+"size": Vector2( 196, 55 )
+},
+"name": "repeat",
+"type": 8
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 120 ),
+"params": [  ],
+"size": Vector2( 279, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 40, -40 ),
+"size": Vector2( 120, 109 )
+},
+"name": "paralel",
+"type": 6
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 60 ),
+"params": [ [ 0, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 0 ]
+},
+"name": "priority_condition",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_has_path",
+"offset": Vector2( 400, 240 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 420, 340 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 180, 260 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"count": 120.0,
+"offset": Vector2( 460, 440 ),
+"size": Vector2( 196, 55 )
+},
+"name": "wait_node",
+"type": 10
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_random_target",
+"offset": Vector2( 400, 500 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_path",
+"offset": Vector2( 360, 600 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move",
+"offset": Vector2( 360, 720 ),
+"params": [  ],
+"size": Vector2( 376, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 180, 440 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 20, 260 ),
+"size": Vector2( 126, 109 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"fn": "task_has_los",
+"offset": Vector2( -300, 180 ),
+"params": [ [ 1, 0 ] ],
+"size": Vector2( 292, 109 ),
+"values": [ 1 ]
+},
+"name": "priority_condition2",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( -520, 120 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+} ],
+"data": {
+"offset": Vector2( -640, 140 ),
+"size": Vector2( 83, 60 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "2909841851215533367"
